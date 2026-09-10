@@ -31,36 +31,59 @@ flat regardless of file size.
 
 ## Installation
 
-Using a virtual environment is strongly recommended.
+### Quick install (recommended)
 
-### Linux / macOS
+The install script creates a private `.venv`, installs dependencies, runs a smoke
+test, and adds `copyverify` / `verify-copy` launchers to your PATH.
+
+**Linux / macOS**
 
 ```bash
 git clone https://github.com/teerartms/copy-verify.git
 cd copy-verify
-
-python3 -m venv .venv
-source .venv/bin/activate
-
-pip install -r requirements.txt
+./install.sh
 ```
 
-### Windows (PowerShell)
+**Windows (PowerShell)**
 
 ```powershell
 git clone https://github.com/teerartms/copy-verify.git
 cd copy-verify
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
 
-python -m venv .venv
-.venv\Scripts\Activate.ps1
+Useful flags (both scripts): `--no-launchers` to skip the PATH change,
+`--bin-dir DIR` / `-BinDir DIR` to choose where launchers go,
+`--python PATH` / `-Python PATH` to pick a specific interpreter.
+Open a new terminal afterwards so the PATH change takes effect.
 
+### Manual install
+
+<details>
+<summary>Set up the virtual environment by hand</summary>
+
+**Linux / macOS**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-> **Note (Windows PowerShell):** If you get an execution policy error, run:
+**Windows (PowerShell)**
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+> If PowerShell blocks the activate script:
 > ```powershell
 > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 > ```
+
+</details>
 
 ---
 
